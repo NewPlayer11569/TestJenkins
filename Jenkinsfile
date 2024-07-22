@@ -12,11 +12,10 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    def scannerHome = tool 'SonarQubeScannerMSBuild'
                     bat """
-                        "${scannerHome}\\SonarScanner.MSBuild.exe" begin /k:"${PROJECT_KEY}" /d:sonar.host.url=${SONAR_SERVER_URL} /d:sonar.login=${SONAR_TOKEN}
-                        dotnet build YourSolution.sln
-                        "${scannerHome}\\SonarScanner.MSBuild.exe" end /d:sonar.login=${SONAR_TOKEN}
+                        dotnet sonarscanner begin /k:"${PROJECT_KEY}" /d:sonar.host.url=${SONAR_SERVER_URL} /d:sonar.login=${SONAR_TOKEN}
+                        dotnet build
+                        dotnet sonarscanner end /d:sonar.token=${SONAR_TOKEN}
                     """
                 }
             }
