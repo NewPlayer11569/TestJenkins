@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                        dotnet sonarscanner
+                        echo $PATH
                     """
                 }
             }
