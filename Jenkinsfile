@@ -9,11 +9,11 @@ pipeline {
 
     stages {
 
-        stage('Hello') {
+        stage('SonarQube Analysis') {
             steps {
                 script {
                     sh """
-                        whoami
+                        dotnet sonarscanner
                     """
                 }
             }
