@@ -9,13 +9,11 @@ pipeline {
 
     stages {
 
-        stage('SonarQube Analysis') {
+        stage('Hello') {
             steps {
                 script {
                     sh """
-                        dotnet sonarscanner begin /k:"${PROJECT_KEY}" /d:sonar.host.url=${SONAR_SERVER_URL} /d:sonar.login=${SONAR_TOKEN}
-                        dotnet build
-                        dotnet sonarscanner end /d:sonar.token=${SONAR_TOKEN}
+                        whoami
                     """
                 }
             }
